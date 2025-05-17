@@ -67,6 +67,14 @@ class Expense {
             }
         }
 
+        public void viewSpendingSummary() {
+            System.out.println("Spending Summary: ");
+            expensesByCategory.forEach((category, expenses) -> {
+                double totalAmount = expenses.stream().mapToDouble(Expense::getAmount).sum();
+                System.out.println("Category: " + category + ", Total Amount: ₹" + totalAmount);
+            });
+        }
+
     }
 
 
