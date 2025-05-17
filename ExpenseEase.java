@@ -48,17 +48,15 @@ class Expense {
 
         public void addExpense(String category, String description, double amount) {
             Expense expense = new Expense(category, description, amount);
-            if (expensesByCategory.containsKey(category)) {
-                expensesByCategory.get(category).add(expense);
-            } else {
-                List<Expense> expenses = new ArrayList<>();
-                expenses.add(expense);
-                expensesByCategory.put(category, expenses);
-            }
+        
+            expensesByCategory.computeIfAbsent(category, k -> new ArrayList<>()).add(expense);
+
             System.out.println("Expense added successfully.");
         }
 
     }
+
+
 }
 
 
