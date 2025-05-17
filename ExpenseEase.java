@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.time.LocalDate;
 
 class Expense {
@@ -36,6 +39,26 @@ class Expense {
         return "[" + date + "] " + category + " - " + description + ": ₹" + amount;
     }
 
+    class ExpenseTracker {
+        private Map<String, List<Expense>> expensesByCategory;
+
+        public ExpenseTracker() {
+            expensesByCategory = new HashMap<>();
+        }
+
+        public void addExpense(String category, String description, double amount) {
+            Expense expense = new Expense(category, description, amount);
+            if (expensesByCategory.containsKey(category)) {
+                expensesByCategory.get(category).add(expense);
+            } else {
+                List<Expense> expenses = new ArrayList<>();
+                expenses.add(expense);
+                expensesByCategory.put(category, expenses);
+            }
+            System.out.println("Expense added successfully.");
+        }
+
+    }
 }
 
 
