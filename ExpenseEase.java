@@ -54,6 +54,19 @@ class Expense {
             System.out.println("Expense added successfully.");
         }
 
+        public void viewExpensesByCategory(String category) {
+            List<Expense> expenses = expensesByCategory.getOrDefault(category, new ArrayList<>());
+
+            if (expenses.isEmpty()) {
+                System.out.println("No expenses found in category " + category);
+            } else {
+                System.out.println("Expenses in category " + category + ":");
+                for (Expense expense : expenses) {
+                    System.out.println("Description: " + expense.getDescription() + ", Amount: ₹");
+                }
+            }
+        }
+
     }
 
 
